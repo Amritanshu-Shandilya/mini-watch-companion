@@ -12,23 +12,33 @@ class MiniWatchConnect(toga.App):
 
     def startup(self):
         main_box = toga.Box(style=Pack(direction=COLUMN))
+        
+        # main_data = toga.Label(
+        #     self.fetch_time(),
+        #     style=Pack(padding=(0,5))
+        # )
 
         display_time = toga.Label(
-            self.fetch_time(),
-            style=Pack(padding=(0, 5))
+            "Time : "+self.fetch_time()[3],
+            style=Pack(padding=(1, 5))
         )   
-        # self.name_input = toga.TextInput(style=Pack(flex=1))
-
-        name_box = toga.Box(style=Pack(direction=ROW, padding=5))
-        name_box.add(display_time)
-        # name_box.add(self.name_input)
-
-        # button = toga.Button(
-        #     "Say Hello!",
-        #     on_press=self.say_hello,
-        #     style=Pack(padding=5)
-        # )
         
+        display_date = toga.Label(
+            "Date : " + self.fetch_time()[1]+" "+self.fetch_time()[2]+" "+self.fetch_time()[4],
+            style=Pack(padding=(2,5))
+        )
+        
+        display_day = toga.Label(
+            "Day : " +  self.fetch_time()[0],
+            style=Pack(padding=(3,5))
+        )
+
+        name_box = toga.Box(style=Pack(direction=COLUMN, padding=5))
+        # name_box.add(main_data)
+        name_box.add(display_time)
+        name_box.add(display_date)
+        name_box.add(display_day)
+
         main_box.add(name_box)
         # main_box.add(button)
 
@@ -38,9 +48,8 @@ class MiniWatchConnect(toga.App):
         
     def fetch_time(self):
         time_val = time.localtime()
-        return time.asctime(time_val)
-        
-        # return time.gmtime(0)
+        data =  time.asctime(time_val)
+        return data.split(" ")
 
 
 def main():
