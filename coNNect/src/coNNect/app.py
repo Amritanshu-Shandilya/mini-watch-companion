@@ -13,14 +13,14 @@ class MiniWatchConnect(toga.App):
     def startup(self):
         main_box = toga.Box(style=Pack(direction=COLUMN))
 
-        time = toga.Label(
-            self.time,
+        display_time = toga.Label(
+            self.fetch_time(),
             style=Pack(padding=(0, 5))
-        )
+        )   
         # self.name_input = toga.TextInput(style=Pack(flex=1))
 
         name_box = toga.Box(style=Pack(direction=ROW, padding=5))
-        name_box.add(time)
+        name_box.add(display_time)
         # name_box.add(self.name_input)
 
         # button = toga.Button(
@@ -36,8 +36,10 @@ class MiniWatchConnect(toga.App):
         self.main_window.content = main_box
         self.main_window.show()
         
-    def time(self):
-        print(time.gmtime(0))
+    def fetch_time(self):
+        time_val = time.localtime()
+        return time.asctime(time_val)
+        
         # return time.gmtime(0)
 
 
