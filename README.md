@@ -1,2 +1,3 @@
 # mini-watch-websocket
-A websocket for Mini Watch project.
+A companion app for Mini Watch project.
+Currently using Python's Beeware App Development framework
